@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Produit>
+
+<h4 class="text-center">Liste des produits</h4>
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover variations-produit-data-table table-vcenter table-striped"
+                           cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var produit in Model)
+                            {
+                                <tr class="curr-prod gradeA">
+                                    <td class="reference"> <b>@produit.Reference</b> </td>
+                                    <td class="childTitle">
+                                        @produit.Nom
+                                    </td>
+                                    <td> <small> @produit.Description </small></td>
+                                    <td class="prix"> @produit.Prix </td>
+                                </tr>
+                                @produit.Variations.Count()
+                                @foreach (var variation in produit.Variations)
+                                {
+
+                                    <tr class="curr-var gradeA">
+                                        <td class="reference"> <b>@produit.Reference</b> </td>
+                                        <td>
+                                            <div class="ml-4">
+                                                @variation.Designation
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a asp-action="Details" asp-controller="Variation" asp-route-id="@variation.Id"
+                                               class="btn btn-sm btn-icon on-default m-r-5" target="_blank"
+                                               data-toggle="tooltip" title="Afficher ses articles">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>-</td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

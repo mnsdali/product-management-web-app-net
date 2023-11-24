@@ -1,0 +1,130 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+
+    <div id="header_top" class="header_top">
+        <div class="container">
+            <div class="hleft">
+                <div class="dropdown">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="javascript:void(0)" class="nav-link user_btn">
+                            <img class="avatar"
+                            src="~/assets/images/user.png" alt="" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img class="avatar"
+                             src="~/images/user-unknown.png" alt="" />
+                        <a asp-controller="Account" asp-action="Register" data-toggle="tooltip" title="Sign-Up" class="nav-link icon"><i class="fa fa-sign-in"></i></a>
+                        <a asp-controller="Account" asp-action="Login" data-toggle="tooltip" title="Sign-In" class="nav-link icon"><i class="fa fa-user-plus"></i></a>
+                       
+
+                    }
+                 @*   <a href="page-search.html" class="nav-link icon"><i class="fa fa-search"></i></a>
+                    <a href="index.html" class="nav-link icon"><i class="fa fa-home"></i></a>
+                    <a href="app-email.html" class="nav-link icon app_inbox"><i class="fa fa-envelope"></i></a>
+                    <a href="app-chat.html" class="nav-link icon xs-hide"><i class="fa fa-comments"></i></a>
+                    <a href="app-filemanager.html" class="nav-link icon app_file xs-hide">
+                        <i class="fa fa-folder"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="hright">
+                <div class="dropdown">
+                    <a href="javascript:void(0)" id="notification-btn" class="nav-link icon settingbar"><i class="fa fa-bell"></i></a>
+                    <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i class="fa fa-navicon"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="left-sidebar" class="sidebar">
+        <div class="d-flex justify-content-between brand_name">
+            <h5 class="brand-name">Crush it</h5>
+            <div class="theme_btn">
+                <a class="theme1" data-toggle="tooltip" title="Theme Radical" href="#" onclick="setStyleSheet('../assets/css/theme1.css', 0);"></a>
+                <a class="theme2" data-toggle="tooltip" title="Theme Turmeric" href="#" onclick="setStyleSheet('../assets/css/theme2.css', 0);"></a>
+                <a class="theme3" data-toggle="tooltip" title="Theme Caribbean" href="#" onclick="setStyleSheet('../assets/css/theme3.css', 0);"></a>
+                <a class="theme4" data-toggle="tooltip" title="Theme Cascade" href="#" onclick="setStyleSheet('../assets/css/theme4.css', 0);"></a>
+            </div>
+        </div>
+        <div class="input-icon">
+            <span class="input-icon-addon">
+                <i class="fe fe-search"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+        <ul class="nav nav-tabs b-none">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#all-tab"><i class="fa fa-list-ul"></i> All</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#app-tab">Elements</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#setting-tab">Settings</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade active show" id="all-tab">
+                <nav class="sidebar-nav" id="left-sidebar-dashboard-links">
+                    <ul class="metismenu ci-effect-1">
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="g_heading">Services Admin</li>
+
+                            <li id="left-sidebar-menu-panier"><a asp-action="Index" asp-controller="Produit" ><i class="fe fe-home"></i><span data-hover="Panier">Panier</span></a></li>
+                            <li id="left-sidebar-menu-commandes">
+                                <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="fe fe-package"></i><span data-hover="Commandes">Commandes</span></a>
+                                <ul>
+                                    <li id="left-sidebar-menu-commandes-revendeurs"><a asp-action="Index" asp-controller="RevendeurCommande" ><span data-hover="Revendeurs">Revendeurs</span></a></li>
+                                </ul>
+                            </li>
+                            <li id="left-sidebar-menu-produits">
+                                <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="fe fe-hard-drive"></i><span data-hover="Produits">Produits</span></a>
+                                <ul>
+                                    <li id="left-sidebar-menu-produits-liste"><a asp-action="listProduits" asp-controller="Produit"  ><span data-hover="Liste">Liste</span></a></li>
+                                    <li id="left-sidebar-menu-produit-create"><a asp-action="Create" asp-controller="Produit" ><span data-hover="Créer">Créer</span></a></li>
+                                </ul>
+                            </li>
+
+                            <li id="left-sidebar-menu-variations">
+                                <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="icon-layers"></i><span data-hover="Séries">Séries</span></a>
+                                <ul>
+                                    <li id="left-sidebar-menu-variations-create"><a asp-action="Create" asp-controller="Variation" ><span data-hover="Créer">Créer</span></a></li>
+                                    @* <li id="left-sidebar-menu-variations-liste"><a asp-action="Edit" asp-controller="Variation" class="btn btn-primary m-1"edit-serie')}}"><span data-hover="Modifier">Modifier</span></a></li>*@
+                                </ul>
+                            </li>
+                            <li id="left-sidebar-menu-pieces">
+                                <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="fe fe-cpu"></i><span data-hover="Piéces">Piéces</span></a>
+                                <ul>
+                                    <li id="left-sidebar-menu-pieces-liste"><a asp-action="Index" asp-controller="Piece" ><span data-hover="Liste">Liste</span></a></li>
+                                    <li id="left-sidebar-menu-pieces-create"><a asp-action="Create" asp-controller="Piece" ><span data-hover="Créer">Créer</span></a></li>
+                                </ul>
+                            </li>
+
+                          
+
+                            <li id="left-sidebar-menu-pieces">
+                                <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="fe fe-hard-drive"></i><span data-hover="Roles">Roles</span></a>
+                                <ul>
+                                    <li id="left-sidebar-menu-produits-liste"><a asp-action="ListRoles" asp-controller="Admin"><span data-hover="Liste">Liste</span></a></li>
+                                    <li id="left-sidebar-menu-produit-create"><a asp-action="CreateRole" asp-controller="Admin"><span data-hover="Créer">Créer</span></a></li>
+                                </ul>
+                            </li>
+
+                        }
+
+                        @*<li><a href="{{ route('reclamations.index')}}" id="left-sidebar-menu-reclamations"><i class="fe fe-file-text"></i><span data-hover="Reclamations">Reclamations</span></a></li>*@
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+            
+            
+        </div>
+    </div>
+
+}

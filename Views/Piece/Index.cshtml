@@ -1,0 +1,130 @@
+﻿
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <a class="btn btn-primary my-2" asp-controller="Piece" asp-action="Create">Créer une pièce</a>
+                <div class="table-responsive">
+                    <table id="pieces-dataTable" class="table table-hover js-basic-example dataTable table-vcenter table-striped" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Reference</th>
+                                <th>Designation</th>
+                                <th>Indice d'arrivage</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Reference</th>
+                                <th>Designation</th>
+                                <th>Indice d'arrivage</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var piece in ViewData["Pieces"] as IEnumerable<Piece>)
+                            {
+                                <tr class="curr-piece gradeA">
+                                    <td>
+                                        <div class="img-hover-zoom">
+                                            <img src="@(piece.Photo == null ? Url.Content("~/assets/images/noimage.jpg") : Url.Content("~/images/" + piece.Photo))" class="rounded piece-stats-photo" width="50" height="50" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="piece-reference">@piece.Ref</div>
+                                    </td>
+                                    <td>
+                                        <div class="piece-stats-designation">@piece.Designation</div>
+                                    </td>
+                                    <td>
+                                        <small class="d-block text-muted piece-stats-ind-arr">@piece.IndiceArrivage</small>
+                                    </td>
+                                    <td>
+                                        <div class="ml-auto text-muted">
+                                            <input type="hidden" value="@piece.QteStock" class="total-stock" />
+                                            <a href="javascript:void(0)" class="icon piece-stats-qte @(piece.QteStock - piece.QteSav <= 0 ? "bg-red-class" : "")" title="Qte Stock: @piece.QteStock / Qte SAV: @piece.QteSav" data-toggle="tooltip" data-placement="top">
+                                                <i class="icon-calculator"></i>
+                                            </a>
+                                            <a href="javascript:void(0)" title="voir les séries qui utilisent cette pièce" data-toggle="tooltip" data-placement="top" class="icon d-md-inline-block ml-2 ">
+                                                <i class="icon-book-open"></i>
+                                            </a>
+                                            <a href="javascript:void(0)" title="modifier la pièce" data-toggle="tooltip" data-placement="top" class="icon d-md-inline-block ml-2 settings-btn">
+                                                <i class="icon-pencil"></i>
+                                            </a>
+                                            <a href="#" title="voir les articles de la pièce" data-toggle="tooltip" data-placement="top" class="icon d-md-inline-block ml-2">
+                                                <i class="fe fe-eye"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="displayImage"></div>
+<!-- Modal -->
+<div class="modal fade" id="edit-piece-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Détails Piéce</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group custom-control-inline">
+                            
+                            <input name="refs[]" class="form-control ref-piece-cls" placeholder="Référence de la pièce..." />
+                           
+                        </div>
+                        <div class="form-group custom-control-inline">
+                            
+                            <input name="designations[]" class="form-control ref-piece-cls" placeholder="Désignation de la pièce..." />
+                         
+                        </div>
+                        <div class="form-group custom-control-inline">
+                         
+                            <input name="indicesArrivage[]" class="form-control ref-piece-cls" placeholder="Indice d'arrivage de la pièce..." />
+
+                        </div>
+                        <div class="form-group custom-control-inline">
+              
+                            <input name="qtesStock[]" spellcheck="false" value="0" oninput="this.value = parseInt(this.value) || 0;" min="1" class="form-control quantity-inp" />
+                        
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="card-header">
+                            <h3 class="card-title">Photo de la pièce<small>Choisir une image pour représenter la pièce</small></h3>
+                        </div>
+                        <div class="card-body">
+                            <input name="photoPaths[]" class="dropify-event dropify" />
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" id="edit-piece-modal-save-btn" class="btn btn-primary">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*
+    <script>
+    var createPiecesRoute = '{{ route("pieces.create") }}';
+</script>
+
+*@

@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MiniProjet_.NET</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+   
+    <!-- Bootstrap Core and vandor -->
+    <link rel="stylesheet" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Datatables Core and vandor -->
+    <link rel="stylesheet" href="~/assets/plugins/datatable/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="~/assets/plugins/datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="~/assets/plugins/datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" href="~/assets/plugins/charts-c3/c3.min.css" />
+    <link rel="stylesheet" href="~/assets/plugins/jvectormap/jvectormap-2.0.3.css" />
+
+    <!-- form advanced  -->
+    <link rel="stylesheet" href="~/assets/plugins/multi-select/css/multi-select.css">
+    <link rel="stylesheet" href="~/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+    <link rel="stylesheet"
+          href="~/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="~/assets/plugins/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="~/assets/plugins/parsleyjs/css/parsley.css">
+
+    <!-- Core css -->
+
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <link rel="stylesheet" href="~/assets/css/theme4.css" id="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+
+
+    <script>
+        var baseUrl = "{{ url('/";
+    </script>
+</head>
+<body>
+    
+    
+    <!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader"></div>
+</div>
+
+<!-- Start main html -->
+<div id="main_content">
+    @await Html.PartialAsync("_left_sidebar")
+
+    <div class="page">
+       
+        <!-- Notification and Activity -->
+        <div class="section-body mt-3">
+            @RenderBody()
+        </div>
+
+           @* @await Html.PartialAsync("Shared/footer")*@
+    </div>
+
+        @*@await Html.PartialAsync("Shared/notifications")*@
+
+        <div class="user_div">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <h5 class="brand-name mb-4">@User.Identity.Name<a href="javascript:void(0)" class="user_btn"><i class="icon-close"></i></a></h5>
+                <div class="form-group">
+                    <form method="post" asp-controller="account" asp-action="logout">
+                        <button type="submit" style="width:auto"
+                                class="btn btn-primary btn-block mt-3">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            }
+           
+            
+        </div>
+        <!-- start main body part-->
+    </div>
+
+    <!-- jQuery and bootstrtap js -->
+    <script src="~/assets/bundles/lib.vendor.bundle.js"></script>
+
+    <!-- start plugin js file  -->
+    <script src="~/assets/bundles/apexcharts.bundle.js"></script>
+    <script src="~/assets/bundles/counterup.bundle.js"></script>
+    <script src="~/assets/bundles/knobjs.bundle.js"></script>
+    <script src="~/assets/bundles/c3.bundle.js"></script>
+    <script src="~/assets/bundles/flot.bundle.js"></script>
+    <script src="~/assets/bundles/jvectormap1.bundle.js"></script>
+
+    <!-- Datatables start plugin js file  -->
+    <script src="~/assets/bundles/dataTables.bundle.js"></script>
+
+ 
+    <script src="~/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="~/assets/plugins/multi-select/js/jquery.multi-select.js"></script>
+    <script src="~/assets/plugins/jquery.maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="~/assets/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    <script src="~/assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="~/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    
+    <script src="~/assets/plugins/html2pdf/html2pdf.bundle.min.js"></script>
+    <script src="~/assets/plugins/parsleyjs/js/parsley.js "></script>
+    <script src="~/assets/plugins/html5-qrcode/html5-qrcode.min.js "></script>
+    <script src="~/assets/plugins/jquery-easyPaginate/jquery-easyPaginate.js "></script>
+
+    <!-- Form advance init js -->
+    <!-- Start core js and page js -->
+
+    <script src="~/assets/js/core.js"></script>
+    <script src="~/assets/js/page/index.js"></script>
+    <script src="~/assets/js/form/form-advanced.js"></script>
+    <script src="~/assets/js/table/datatable.js"></script>
+
+
+    <script src="~/assets/js/custom-js/app.js"></script>
+    <script src="~/assets/js/custom-js/produits.js"></script>
+    <script src="~/assets/js/custom-js/produits2.js"></script>
+    <script src="~/assets/js/custom-js/variations.js"></script>
+    <script src="~/assets/js/custom-js/pieces.js"></script>
+    <script src="~/assets/js/custom-js/piece.js"></script>
+    <script src="~/assets/js/custom-js/panier.js"></script>
+    <script src="~/assets/js/custom-js/qrs.js"></script>
+    <script src="~/assets/js/custom-js/geolocation.js"></script>
+    <script src="~/assets/js/custom-js/qr-interface.js"></script>
+    <script src="~/assets/js/custom-js/reclamation.js"></script>
+    <script src="~/assets/js/custom-js/type_panne.js"></script>
+    
+    @*<script src="~/assets/js/custom-js/piece.js"></script>*@ 
+    <script>
+        const Toast = swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', swal.stopTimer);
+                toast.addEventListener('mouseleave', swal.resumeTimer);
+            }
+        });
+    </script>
+    <script>
+        function setStyleSheet(url) {
+            var stylesheet = document.getElementById("stylesheet");
+            stylesheet.setAttribute('href', url);
+        }
+    </script>
+    <script type="text/javascript">
+        setTimeout(function () {
+            // Closing the alert
+            $('.alert').alert('close');
+        }, 3000);
+    </script>
+    <script src="~/js/CustomScript.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

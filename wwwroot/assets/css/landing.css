@@ -1,0 +1,145 @@
+/* == sponsors == */
+html{
+    scroll-behavior: smooth;
+}
+.btn-send-reclamation i{
+    font-size: 30px;
+    transition: all 250ms ease;
+}
+.btn-send-reclamation span{
+    display: none;
+    opacity: 0;
+    transform: translate(-15rem);
+    transition: opacity 1s ease !important;
+    transition: transform 1s ease !important;
+}
+
+.btn-send-reclamation:hover i{
+    font-size: 20px;
+
+}
+.btn-send-reclamation:hover span{
+    display: inline;
+    opacity: 1;
+    transform: translate(0);
+}
+.sponsors{
+    margin-top: 15rem;
+    height: 4rem;
+    width:100%;
+    background-color: rgb(232, 243, 255);
+}
+
+.row_sp{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 3rem;
+
+}
+
+.sponsor img{
+    height: 2rem;
+}
+
+.col_sp{
+    margin-top: 1.5%;
+}
+
+/* == steps == */
+
+.editorial{
+    text-align: center;
+}
+.steps{
+
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* .editorial .col_steps{
+    width: 25%;
+} */
+
+.step  img{
+    margin: auto;
+    height: 5rem;
+    width: 5rem;
+}
+
+/* == company numbers == */
+.company-numbers{
+    width: 100%;
+    height: 90vh;
+    background-image: linear-gradient(rgba(36, 69, 116, 0.671),rgba(255, 255, 255, 0.5)),url(/resources/img/sav_index.png);
+    background-position: center;
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    position: relative;
+}
+
+.company-numbers h1{
+    padding-top: 18%;
+    color: white;
+    margin-left: -20%;
+}
+
+.row_nbs{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+.col_nbs{
+    flex-basis: 22%;
+    text-align: center;
+    color: #555;
+}
+.counter-box{
+    width: 100%;
+    height: 100%;
+    background: #12192c;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px -4px #66676c;
+    color:#fff;
+}
+.company-numbers h2,.company-numbers span{
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.company-numbers h5{
+    font-size: 15px;
+}
+.counter-box .fa,.counter-box .fa-solid{
+    font-size: 45px;
+    color: #06d6a0;
+    display: block;
+}
+
+#arrow{
+    width:120px;
+    height:120px;
+
+    margin-top: -20px;
+    margin-left: -10%;
+    margin-bottom: -25px;
+    transform: rotate(-60deg);
+}
+
+#panne-descrip-textarea{
+    max-height: 15rem;
+}
+
+#recl_prod_details
+{display: none;}
+

@@ -1,0 +1,53 @@
+﻿@model Variation 
+
+<h4 class="text-center"> QRs de la Variation: @Model.Designation </h4>
+<div class="card" id="pdf-content">
+    <div class="card-body">
+        <table>
+            <thead>
+                <tr>
+                    <th><h2><pre>   #  </pre></h2></th>
+                    <th><h2><pre>      S/N d'article </pre></h2></th>
+                    <th><h2><pre>         # </pre></h2></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                @{
+                    int i = 0; 
+
+                    foreach (var article in Model.Articles)
+                    {
+                        if (i % 3 == 0)
+                        {
+                            @:</tr><tr>
+                        }
+
+                        <td>
+                            <table>
+                                <tr>
+                                    <td align="center"><b>@article.SerieNumber</b></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content($"~/QrCodes/Articles/{Model.Designation}/{article.SerieNumber}_serieNumber.svg")" class="qr_code" width="230">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                        i++;
+                    }
+                }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <button type="button" id="print-qrs-btn" class="btn btn-success checkout-btn" title="Impression des qrs" data-toggle="tooltip" data-placement="bottom">
+        <i class="icon-printer mr-2"></i>Imprimer
+</button>
+</div>

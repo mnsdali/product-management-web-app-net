@@ -1,0 +1,217 @@
+.del-var-btn:hover, .del-piece-btn:hover{
+    cursor: pointer;
+}
+
+.del-var-btn:hover i, .del-piece-btn:hover i{
+    color: red;
+}
+
+.add-var-btn:hover, .add-piece-btn:hover{
+    cursor: pointer;
+}
+
+.add-var-btn:hover i,.add-piece-btn:hover i {
+    color: rgb(2, 192, 68);
+}
+
+.hide-transition {
+    display: none;
+    transition: display 0.5s ease-in-out;
+}
+
+.curr-prod-vars {
+    display: none;
+}
+
+.btn-shopping-cart{
+
+    transition: all 250ms ease;
+}
+
+.btn-shopping-cart:hover{
+    cursor: pointer;
+    background-color: rgb(95, 255, 47);
+}
+
+
+.button-remove i{
+    transition: all 250ms ease;
+}
+
+.button-remove:hover i{
+    cursor: pointer;
+    color:rgb(24, 24, 207)
+}
+
+
+.btn-delete-from-cart i{
+    font-size: 20px;
+    color: black;
+    transition: all 250ms ease;
+}
+
+.btn-delete-from-cart:hover i{
+    color: red;
+    cursor: pointer;
+}
+a.add-new-prod-for-cart {
+    transition: transform .3s ease-out;
+    display: inline-block;
+}
+a.add-new-prod-for-cart:hover {
+
+transform: translate(5px, 7px);
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+i {
+    font-size: 20px;
+}
+
+.rotative-icon .fe{
+    font-size: 12px;
+
+}
+
+.rotative-icon {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 0) !important; /* Starting rotation angle */
+    transition: all 0.5s ease !important;
+}
+
+.return-btn-label:hover + .rotative-icon {
+
+    transform: rotate3d(0, 0, 1, 90deg) !important; /* Ending rotation angle */
+}
+
+.bg-red-class i{
+    color: rgb(255, 0, 0) !important;
+}
+
+.bg-red-class:hover i{
+    color: rgb(0, 132, 255) !important;
+}
+
+
+.hover-div {
+    display: none;
+    position: absolute;
+    background-color: #ecececf7;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    z-index: 999; /* Ensure it's on top */
+}
+
+.rec-time:hover + .hover-div{
+    display: block;
+}
+
+
+a .fa-qrcode{
+    font-size: 25px ;
+}
+
+
+.qrs-variation{
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+/* #
+####
+###
+####
+################
+ zoomed image piece
+ ############*/
+
+ .img-hover-zoom {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.img-hover-zoom img {
+    transition: transform 0.3s ease;
+}
+
+.img-hover-zoom:hover img {
+    cursor: pointer;
+    transform: scale(1.2); /* Adjust the scale factor for the zoom effect */
+}
+
+#displayImage {
+    position: absolute;
+    z-index: 9999;
+    width: 200px; /* Adjust the width of the displayed image */
+    height: auto;
+    display: none;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#displayImage img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ###################### */
+
+.fa-red{
+    font-size: 20px;
+    color: red;
+}
+
+.fa-green{
+    font-size: 20px;
+    color: green;
+}
+
+ /* ====###########
+NOTIFICATION WIDGET */
+
+.notification-widget{
+    overflow-y: auto;
+    position: fixed;
+    display: none;
+    z-index: 1031;
+    bottom: 50px;
+    left: 75px;
+    width: 450px;
+    height: 600px;
+    background-color: white;
+    border-radius: 5px 0 0 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+}
+
+.hoverable-bg:hover{
+    background-color: #ecececf7;
+}
+
+
+.fa-color-green{
+    color: rgb(0, 255, 0);
+}
+
+.fa-color-gray{
+    color: rgb(128, 128, 128);
+}
+
+.designations-ul li{
+    /* remove point of li */
+    list-style-type: none;
+
+
+}
+
+#maps-iframe{
+    width: 100%;
+    height: 70vh;
+}
+

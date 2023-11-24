@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using MiniProjet_.NET.Models.ViewModels.Auth;
+@using MiniProjet_.NET.Models.ViewModels;
+@model PanierViewModel
+
+<h4 class="text-center">Catalogue de ventes au revendeurs</h4>
+<form id='commandeForm' asp-controller="RevendeurCommande" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="row mt-5 mb-3">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <label class="form-label text-center">Selectionner un revendeur</label>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="form-group multiselect_div">
+                
+                <select id="revendeur-select" name="revendeur" class="multiselect multiselect-custom">
+                    @foreach (var revendeur in Model.Users)
+                    {
+                        <option value="@revendeur.Id"> @revendeur.UserName </option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+  
+       
+        <div class="commandes">
+            <div class="curr-commande  card">
+                <div class="row card-body">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mx-auto">
+                        <label class="form-label text-center">Selectionner un produit</label>
+                        <div class="form-group multiselect_div">
+                           
+                            <select name="ref_series[]"
+                                class="multiselect multiselect-custom liste-produits-select designation" required>
+                            @foreach (var produit in Model.Produits)
+                                    {
+                                        @foreach (var variation in produit.Variations)
+                                        {
+                                            
+                                                <option
+                                                value="@{@produit.Reference}_@{@variation.Designation}">
+                                                     @produit.Reference - @variation.Designation </option>
+                                            
+                                        }
+                                    }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                        <label class="form-label text-center">Préciser la quantité à donner au revendeur</label>
+                        <input type="number" class="form-control cartQte" value="1" min="1"
+                            placeholder="quantité">
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-2 mx-auto form-group">
+                        <div class="form-group custom-control-inline" style="margin-left: 10%; margin-top: 20%">
+                            <a class="add-to-cart-btn" title="Valider les détails" data-toggle="tooltip"
+                                data-placement="top">
+                                <i class="fe fe-check-square"></i>
+                            </a>
+                            <a class="add-new-prod-for-cart" title="Ajouter un autre produit" data-toggle="tooltip"
+                                data-placement="top">
+                                <i class="fe fe-copy"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pdf-content">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <h4 class="text-center">Panier</h4>
+                        <div class="card-body">
+                            <div class="panier">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-vcenter table-striped" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Référence</th>
+                                                <th>Désignation</th>
+                                                <th>Prix</th>
+                                                <th>Quantité</th>
+                                                <th>Sous-total</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tfoot>
+                                            <hr>
+                                            <tr>
+                                                <td colspan="4" class="text-right"><b>Total</b></td>
+                                                <td><b id="total">0.00</b> <small> DT </small><input type="hidden" name="total" value="0.00"></td>
+                                            </tr>
+
+                                        </tfoot>
+
+                                        <tbody id="cart-table">
+
+                                        </tbody>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" id="checkout-btn" class="btn btn-success checkout-btn" title="Enregistrer la commande"
+            data-toggle="tooltip" data-placement="bottom">
+            <i class="fe fe-check mr-2"></i>Valider
+        </button>
+    </div>
+
+</form>
+<script>
+    var leftSidebarID = "left-sidebar-menu-panier";
+</script>
+
+<script>
+    const produits = @Json.Serialize(Model.Produits.ToList());
+    const variations = @Json.Serialize(Model.Variations.ToList());
+</script>
